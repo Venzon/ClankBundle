@@ -7,6 +7,7 @@ use JDare\ClankBundle\Event\ServerEvent;
 use Ratchet\WebSocket\WsServer;
 use Ratchet\Wamp\WampServer;
 use Ratchet\Session\SessionProvider;
+use Ratchet\Http\HttpServer;
 
 class WebSocketServerType implements ServerTypeInterface
 {
@@ -94,9 +95,10 @@ class WebSocketServerType implements ServerTypeInterface
             );
         }
 
-
-        $this->app = new WsServer(
-            $serverStack
+        $this->app = new HttpServer(
+            new WsServer(
+                $serverStack
+            )
         );
     }
 
