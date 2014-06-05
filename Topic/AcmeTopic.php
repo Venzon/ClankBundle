@@ -5,10 +5,10 @@ namespace JDare\ClankBundle\Topic;
 use JDare\ClankBundle\Topic\TopicInterface;
 
 use Ratchet\ConnectionInterface as Conn;
+use Ratchet\Wamp\Topic;
 
 class AcmeTopic implements TopicInterface
 {
-
     /**
      * This will receive any Subscription requests for this exact topic.
      *
@@ -33,7 +33,6 @@ class AcmeTopic implements TopicInterface
         $topic->broadcast($conn->resourceId . " has left " . $topic->getId());
     }
 
-
     /**
      * This will receive any Publish requests for this exact topic.
      *
@@ -57,4 +56,12 @@ class AcmeTopic implements TopicInterface
         ));
     }
 
+    /**
+     * @param Topic $topic
+     * @return void
+     */
+    public function setTopic(Topic $topic)
+    {
+        $this->topic = $topic;
+    }
 }
